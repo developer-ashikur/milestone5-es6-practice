@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with API</title>
+    <style>
+        h1{
+            color: tomato;
+        }
+        h2{
+            color: darkmagenta;
+        }
+    </style>
+</head>
+<body>
+    <h2>Are you bored? Do the following things:</h2>
+    <h1 id="activity"></h1>
+
+    <script>
+        function doSomething (){
+            fetch('http://www.boredapi.com/api/activity/')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('activity').innerText = data.activity;
+            })
+        }
+        doSomething();
+        setInterval( () => {
+            doSomething();
+        }, 10000);
+    </script>
+</body>
+</html>
